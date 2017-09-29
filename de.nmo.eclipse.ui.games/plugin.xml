@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+         <menu
+               id="de.nmo.eclipse.ui.games"
+               label="NMO Games">
+            <visibleWhen
+                  checkEnabled="false">
+               <test
+                     forcePluginActivation="true"
+                     property="de.nmo.eclipse.ui.games.konami"
+                     value="true">
+               </test>
+            </visibleWhen>
+            <command
+                  commandId="de.nmo.eclipse.ui.games.tilemapeditor.command"
+                  style="push">
+            </command>
+         </menu>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.startup">
+      <startup
+            class="de.nmo.eclipse.ui.games.KonamiCode">
+      </startup>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="de.nmo.eclipse.ui.games.KonamiCode"
+            id="de.nmo.eclipse.ui.games.propertyTester1"
+            namespace="de.nmo.eclipse.ui.games"
+            properties="konami"
+            type="java.lang.Object">
+      </propertyTester>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="de.nmo.eclipse.ui.games.tilemapeditor.OpenGame"
+            id="de.nmo.eclipse.ui.games.tilemapeditor.command"
+            name="Tile Map Editor">
+      </command>
+   </extension>
+
+</plugin>

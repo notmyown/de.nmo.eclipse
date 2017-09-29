@@ -60,6 +60,11 @@ public class DynamicContributionItem extends ContributionItem {
   }
 
   @Override
+  public boolean isEnabled() {
+    return true;
+  }
+
+  @Override
   public void fill(Menu menu, int index) {
     getContextFromConfig();
     for (final String key : perspectivecontexts.keySet()) {
