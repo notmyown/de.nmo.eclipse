@@ -37,8 +37,8 @@ public class GoodieFeather extends Goodie {
 
   public GoodieFeather(TileMap tm) {
     super(tm);
-    this.moveSpeed = 1.3;
-    this.maxSpeed = 1.3;
+    this.moveSpeed = 0.5;
+    this.maxSpeed = 0.5;
     this.fallSpeed = 0.2;
 
     this.maxFallSpeed = 10.0;
@@ -88,7 +88,7 @@ public class GoodieFeather extends Goodie {
   }
 
   public void checkTileMapCollision() {
-    if (this.currentinit && this.y > this.startY - 20) {
+    if (this.currentinit && this.y > this.startY - 40) {
       this.currCol = (int) this.x / this.tileSize;
       this.currRow = (int) this.y / this.tileSize;
 

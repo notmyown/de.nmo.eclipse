@@ -26,6 +26,7 @@ import javax.swing.SwingUtilities;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
+import org.eclipse.swt.widgets.Shell;
 
 import de.nmo.eclipse.ui.games.Activator;
 
@@ -380,8 +381,10 @@ public class MyPanel extends JPanel
         try {
           //String str = JOptionPane.showInputDialog(null, "Save file name", "Save Map", 1);
           String str = Activator.getPrefs().get(TILEMAPEDITOR_MAP, null);
-          if (str == null)
-            return;
+          if (str == null) {
+            FileDialog fileD = new FileDialog(new Shell(), SWT.SAVE);
+            str = fileD.open();
+          }
           saveMap(str);
         } catch (Exception e) {
           e.printStackTrace();
@@ -396,7 +399,7 @@ public class MyPanel extends JPanel
           public void run() {
             String str = null;
             try {
-              FileDialog fileD = new FileDialog(Display.getDefault().getActiveShell(), SWT.SINGLE);
+              FileDialog fileD = new FileDialog(new Shell(), SWT.SINGLE);
               str = fileD.open();
               if (str == null)
                 return;
@@ -418,7 +421,7 @@ public class MyPanel extends JPanel
         public void run() {
           String str = null;
           try {
-            FileDialog fileD = new FileDialog(Display.getDefault().getActiveShell(), SWT.SINGLE);
+            FileDialog fileD = new FileDialog(new Shell(), SWT.SINGLE);
             str = fileD.open();
             if (str == null)
               return;

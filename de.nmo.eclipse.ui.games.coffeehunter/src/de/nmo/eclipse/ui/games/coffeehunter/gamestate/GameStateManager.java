@@ -14,11 +14,12 @@ public class GameStateManager {
   private boolean         paused;
 
   public static final int NUMGAMESTATES = 16;
-  public static final int MENUSTATE     = 0;
-  public static final int PASSWORDSTATE = 1;
-  public static final int OPTIONSSTATE  = 2;
-  public static final int LEVEL1STATE   = 3;
-  public static final int LEVEL2STATE   = 4;
+  public static final int SANDBOXSTATE  = 0;
+  public static final int MENUSTATE     = 1;
+  public static final int PASSWORDSTATE = 2;
+  public static final int OPTIONSSTATE  = 3;
+  public static final int LEVEL1STATE   = 4;
+  public static final int LEVEL2STATE   = 5;
 
   public JPanel           panel;
 
@@ -39,6 +40,8 @@ public class GameStateManager {
   private void loadState(int state) {
     if (state == MENUSTATE)
       this.gameStates[state] = new MenuState(this);
+    if (state == SANDBOXSTATE)
+      this.gameStates[state] = new LevelSandboxState(this);
     if (state == PASSWORDSTATE)
       this.gameStates[state] = new PasswordState(this);
     else if (state == LEVEL1STATE)

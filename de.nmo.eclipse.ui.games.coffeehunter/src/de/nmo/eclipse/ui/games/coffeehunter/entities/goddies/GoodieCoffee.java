@@ -19,6 +19,7 @@
 **/
 package de.nmo.eclipse.ui.games.coffeehunter.entities.goddies;
 
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
@@ -37,8 +38,8 @@ public class GoodieCoffee extends Goodie {
 
   public GoodieCoffee(TileMap tm) {
     super(tm);
-    this.moveSpeed = 1.3;
-    this.maxSpeed = 1.3;
+    this.moveSpeed = 0.5;
+    this.maxSpeed = 0.5;
     this.fallSpeed = 0.2;
 
     this.maxFallSpeed = 10.0;
@@ -88,7 +89,7 @@ public class GoodieCoffee extends Goodie {
   }
 
   public void checkTileMapCollision() {
-    if (this.currentinit && this.y > this.startY - 20) {
+    if (this.currentinit && this.y > this.startY - 40) {
       this.currCol = (int) this.x / this.tileSize;
       this.currRow = (int) this.y / this.tileSize;
 
@@ -136,6 +137,24 @@ public class GoodieCoffee extends Goodie {
       p.setHealth(p.getMaxHealth());
       this.consumed = true;
     }
+  }
+
+  @Override
+  public Rectangle getRectangle() {
+    int xoffset = +2;
+    int yoffset = +7;
+    return new Rectangle((int) x - cwidth + xoffset, (int) y - cheight + yoffset, cwidth, cheight);
+  }
+
+  public Rectangle getObjectRectangle() {
+    int xoffset = 0;
+    int yoffset = -10;
+    return new Rectangle((int) x - cwidth + xoffset, (int) y - cheight + yoffset, width, height);
+  }
+
+  public void setMapPosition() {
+    xmap = tileMap.getx();
+    ymap = tileMap.gety() - 5;
   }
 
 }

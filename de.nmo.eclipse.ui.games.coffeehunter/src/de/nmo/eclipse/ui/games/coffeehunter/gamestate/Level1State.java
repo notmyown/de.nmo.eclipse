@@ -54,7 +54,7 @@ public class Level1State extends AbstractLevelGameState {
 
   @Override
   protected Player createPlayer() {
-    Player p = new Player(this.tileMap, "playerone");
+    Player p = new Player(this.tileMap, "playertwo");
     p.setPosition(60, 100);
     return p;
   }
@@ -128,9 +128,9 @@ public class Level1State extends AbstractLevelGameState {
     es.add(new EnemyApplicationTree(this.tileMap, 550, 145));
     es.add(new EnemyApplicationTree(this.tileMap, 700, 145));
 
-    es.add(new EnemyPushBar(this.tileMap, false, 839, 150));
-    es.add(new EnemyPushBar(this.tileMap, true, 811, 210));
-    es.add(new EnemyPushBar(this.tileMap, false, 839, 270));
+    es.add(new EnemyPushBar(this.tileMap, false, 839, 150, 0));
+    es.add(new EnemyPushBar(this.tileMap, true, 811, 210, 2000));
+    es.add(new EnemyPushBar(this.tileMap, false, 839, 270, 0));
 
     final EnemySpirit spirit = new EnemySpirit(this.tileMap, this.player, this.enemies, this.explosions, 555, 390);
     spirit.setFinishTrigger((enemy) -> {

@@ -91,7 +91,7 @@ public class GoddieBlock extends Enemy {
     this(tm);
     setPosition(x, y);
     this.goodie = good;
-    this.goodie.setPosition(x, y);
+    this.goodie.setPosition(x - 10, y - 5);
     this.goodie.startY = y;
   }
 
@@ -122,6 +122,12 @@ public class GoddieBlock extends Enemy {
     int xoffset = -5;
     int yoffset = 0;
     return new Rectangle((int) x - cwidth + xoffset, (int) y - cheight + yoffset, cwidth, cheight);
+  }
+
+  public Rectangle getObjectRectangle() {
+    int xoffset = -10;
+    int yoffset = -5;
+    return new Rectangle((int) x - cwidth + xoffset, (int) y - cheight + yoffset, width, height);
   }
 
   @Override

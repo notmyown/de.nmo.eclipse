@@ -21,6 +21,7 @@ package de.nmo.eclipse.ui.games.coffeehunter.entities;
 
 import de.nmo.eclipse.ui.games.coffeehunter.entities.players.PlayerOne;
 import de.nmo.eclipse.ui.games.coffeehunter.entities.players.PlayerTinyDragon;
+import de.nmo.eclipse.ui.games.coffeehunter.entities.players.PlayerTwo;
 
 /**
  * 
@@ -34,6 +35,9 @@ public class PlayerFactory {
 
     if (id == "playerone") {
       return new PlayerOne();
+    }
+    if (id == "playertwo") {
+      return new PlayerTwo();
     }
     return new PlayerTinyDragon();
   }

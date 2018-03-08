@@ -41,6 +41,18 @@ public class PasswordState extends MenuState implements KeyListener {
         this.gsm.setState(GameStateManager.LEVEL2STATE);
         return;
       }
+      if ("Sandbox".equals(this.password)) {
+        this.gsm.panel.removeKeyListener(this);
+        System.setProperty("ch.debug", "true");
+        this.gsm.setState(GameStateManager.SANDBOXSTATE);
+        return;
+      }
+      if ("DebugON".equals(this.password)) {
+        System.setProperty("ch.debug", "true");
+      }
+      if ("DebugOFF".equals(this.password)) {
+        System.setProperty("ch.debug", "false");
+      }
       this.password = "";
       return;
     }

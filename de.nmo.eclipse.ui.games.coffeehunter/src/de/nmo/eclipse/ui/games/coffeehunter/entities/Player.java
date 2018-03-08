@@ -153,7 +153,7 @@ public class Player extends MapObject {
   }
 
   public void setGliding(boolean b) {
-    this.gliding = this.canGliding && b;
+    this.gliding = b; //this.canGliding && b;
   }
 
   public Rectangle getRectangle() {

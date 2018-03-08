@@ -40,6 +40,9 @@ public class EnemyPushBar extends Enemy {
 
   private BufferedImage[] sprites;
 
+  private long            startdelay = 0;
+  private long            createtime = 0;
+
   /**
    * @param tm
    *
@@ -48,6 +51,7 @@ public class EnemyPushBar extends Enemy {
    */
   public EnemyPushBar(TileMap tm) {
     super(tm);
+    this.createtime = System.currentTimeMillis();
     this.moveSpeed = 0;
     this.maxSpeed = 0;
     this.fallSpeed = 0;
@@ -63,7 +67,7 @@ public class EnemyPushBar extends Enemy {
 
     try {
       BufferedImage spritesheet = ImageIO.read(getClass().getResourceAsStream("/Sprites/Enemies/pushbar.png"));
-      this.sprites = new BufferedImage[4];
+      this.sprites = new BufferedImage[5];
       for (int i = 0; i < this.sprites.length; i++) {
         this.sprites[i] = spritesheet.getSubimage(i * this.width, 0, this.width, this.height);
       }
@@ -73,16 +77,17 @@ public class EnemyPushBar extends Enemy {
 
     this.animation = new Animation();
     this.animation.setFrames(this.sprites);
-    this.animation.setDelay(100);
+    this.animation.setDelay(500);
 
     this.right = true;
   }
 
-  public EnemyPushBar(TileMap tm, boolean fr, int x, int y) {
+  public EnemyPushBar(TileMap tm, boolean fr, int x, int y, long startdelay) {
     this(tm);
     setPosition(x, y);
     setStartPosition(x, y);
     this.facingRight = fr;
+    this.startdelay = startdelay;
   }
 
   @Override
@@ -95,34 +100,24 @@ public class EnemyPushBar extends Enemy {
     int theight = this.cheight;
     int twidth = this.cwidth;
     int offset = 0;
-    switch (this.animation.getFrame()) {
-      case 3: {
-        theight = 30;
-        twidth = 30;
-        break;
-      }
-      //$FALL-THROUGH$
-      default: {
-        theight = 0;
-        twidth = 0;
-        break;
-      }
+    if (this.animation.getFrame() > 2) {
+      theight = 30;
+      twidth = 30;
+    } else {
+      theight = 0;
+      twidth = 0;
     }
-
     return new Rectangle((int) this.x - this.cwidth + offset, (int) this.y - this.cheight, twidth, theight);
   }
 
   @Override
   public void update() {
+
     getNextPosition();
     checkTileMapCollision();
-    if (this.animation.getFrame() == 3) {
-      this.animation.setDelay(1000);
-    } else {
-      this.animation.setDelay(500);
+    if (this.createtime + this.startdelay < System.currentTimeMillis()) {
+      this.animation.update();
     }
-    this.animation.update();
-
   }
 
   @Override
